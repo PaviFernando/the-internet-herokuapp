@@ -3,7 +3,9 @@
 
 describe("Login page", () => {
   beforeEach(() => {
-         cy.visit('/login');;
+         cy.visit('/login');
+
+    
   }); 
 
  /* const invalidUsername = 'Wrong';
@@ -23,8 +25,6 @@ describe("Login page", () => {
     cy.get('.button').contains('Logout').click();
 
   });
-
-
 
 //Invalid username
 
