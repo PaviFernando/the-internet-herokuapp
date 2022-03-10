@@ -1,9 +1,11 @@
 /// <reference types="cypress" />
 
-describe('Navigation', () => {
+describe('Checkboxes', () => {
   it('Verify the checkbox', () => {
     // navigate to the checkbox
      cy.visit('/checkboxes');
+      //complete page screenshot with filename - Checkboxes
+      cy.screenshot('Checkboxes')
     
     cy.get('input').eq(0).as('input0').check();
     cy.get('input0').should('be.checked')

@@ -4,6 +4,8 @@
 describe("context_menu", () => {
   beforeEach(() => {
          cy.visit('/context_menu');
+          //complete page screenshot with filename - context_menu
+      cy.screenshot('context_menu')
 
 
   }); 

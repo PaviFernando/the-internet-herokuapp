@@ -4,6 +4,8 @@
 describe("javascript_alerts", () => {
   beforeEach(() => {
          cy.visit('/javascript_alerts');
+          //complete page screenshot with filename - javascript_alerts
+      cy.screenshot('javascript_alerts')
 
 
   }); 

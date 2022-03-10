@@ -4,20 +4,25 @@
 describe("Login page", () => {
   beforeEach(() => {
          cy.visit('/login');
+          //complete page screenshot with filename - Login_page
+      cy.screenshot('Login_page')
 
     
   }); 
+  //part of before hook
+   before(function(){
+      //access fixture data
+      cy.fixture('example').then(function(signInData){
+         this.signInData = signInData
+      })
+   })
 
- /* const invalidUsername = 'Wrong';
-  const invalidPassword = 'invalid';
-  const validUsername = 'tomsmith';
-  const validPassword = 'SuperSecretPassword!';*/
   
 // Valid credentials
   it("Verifiy Login greeting", () => {
     expect(cy.contains('Login Page')).to.exist; 
-    cy.get('#username').type('tomsmith');
-    cy.get('#password').type('SuperSecretPassword!');
+    cy.get('#username').type(this.signInData.username);
+    cy.get('#password').type(this.signInData.password);
     cy.get('.radius').contains('Login').click();
     cy.get('h2').should('have.text',' Secure Area');
 
@@ -31,8 +36,8 @@ describe("Login page", () => {
   it("Verify Invalid username", () => {
   
     expect(cy.contains('Login Page')).to.exist; 
-    cy.get('#username').type('tomsmith1');
-    cy.get('#password').type('SuperSecretPassword!');
+    cy.get('#username').type(this.signInData.incorrect_username);
+    cy.get('#password').type(this.signInData.password);
     cy.get('.radius').contains('Login').click();
     cy.get('#flash').contains('Your username is invalid!');
   });
@@ -40,8 +45,8 @@ describe("Login page", () => {
 //Invalid password  
   it("Verify Invalid password", () => {
     expect(cy.contains('Login Page')).to.exist; 
-    cy.get('#username').type('tomsmith');
-    cy.get('#password').type('SuperSecretPassword!1');
+    cy.get('#username').type(this.signInData.username);
+    cy.get('#password').type(this.signInData.incorrect_password);
     cy.get('.radius').contains('Login').click() ; 
     cy.get('#flash').contains('Your password is invalid!');
   });
