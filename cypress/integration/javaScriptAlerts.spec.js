@@ -26,6 +26,9 @@ describe("javascript_alerts", () => {
 
    cy.on('window:alert', (text) => {
       expect(text).to.contains('I am a JS Confirm');
+
+         // verify application message on Cancel button click
+      cy.get('#result').should('have.text', 'You clicked: Cancel')
     });
   
 });
